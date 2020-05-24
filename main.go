@@ -21,7 +21,7 @@ func LogEvent(entry string) {
 
 func (relay Relay) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
   relativeUrl := request.URL
-  urlString := "http://youtube.com" + relativeUrl.String()
+  urlString := "https://youtube.com" + relativeUrl.String()
   logString := request.RemoteAddr + urlString + time.Now().String()
   LogEvent(logString)
   response, _ := client.Get(urlString)
@@ -40,5 +40,5 @@ func main() {
   CheckLog()
   relay := Relay{}
   http.Handle("/", relay)
-  http.ListenAndServe("localhost:4000", nil)
+  http.ListenAndServe("localhost:3000", nil)
 }
